@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Leaflet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Tambahkan stylesheet Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <style>
+        #peta {
+            height: calc(92vh - 54px);
+            /* Menyesuaikan tinggi peta */
+
+            /* Menghindari navbar */
+            width: 100%;
+            /* Lebar penuh */
+        }
+
+
+
+        .marker-tooltip {
+            background: white;
+            color: black;
+            font-weight: bold;
+
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            position: fixed;
+
+            top: 64px;
+
+            left: 0;
+            width: 100%;
+
+            /* Warna latar belakang menu */
+            z-index: 10000;
+            /* Pastikan muncul di atas elemen lain */
+            display: none;
+            /* Default: sembunyikan menu */
+            flex-direction: column;
+            padding: 1rem;
+
+        }
+
+        #mobile-menu.show {
+            display: flex;
+            /* Tampilkan menu saat diaktifkan */
+        }
+
+        #mobile-menu a {
+
+
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #mobile-menu a:hover {
+            color: #ccc;
+            /* Warna saat hover */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="bg-blue-800 p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-white text-2xl font-bold">Teras Singgah</a>
+
+            <!-- Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="./home.html" class="text-white hover:text-red-500 transition">Beranda</a>
+                <a href="./menu.html" class="text-white hover:text-red-500 transition">Menu</a>
+                <a href="./map.html" class="text-white hover:text-red-500 transition">Map</a>
+                <a href="./kontak.html" class="text-white hover:text-red-500 transition">Kontak</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col bg-blue-800 p-4 space-y-4">
+            <a href="./home.html" class="text-white hover:text-red-500 transition">Home</a>
+            <a href="./menu.html" class="text-white hover:text-red-500 transition">Menu</a>
+            <a href="./Map.html" class="text-white hover:text-red-500 transition">Alamat</a>
+            <a href="./Kontak.html" class="text-white hover:text-red-500 transition">Kontak</a>
+        </div>
+    </nav>
+    <!-- Elemen untuk menampilkan peta -->
+    <div id="peta"></div>
+
+    <!--center: [-6.104302, 120.464484],-->
+
+    <footer class="bg-blue-800 text-white text-center py-4 shadow-md">
+        <p>&copy; 2024 Website terassinggah</p>
+    </footer>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Toggle visibility of the mobile menu
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('show'); // Tampilkan/sembunyikan menu
+        });
+
+
+        // Inisialisasi peta
+        document.addEventListener("DOMContentLoaded", function () {
+            var map = L.map('peta', {
+                center: [-6.1003759, 120.4648898],
+                zoom: 18,
+                minZoom: 10,
+                maxZoom: 20
+            });
+
+
+
+            // Lapisan Peta OSM
+            const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+
+
+            // Menambahkan kontrol layer
+            const baseMaps = {
+                "default": map,
+                "OSM": osmLayer,
+            };
+
+
+            // Menambahkan kontrol untuk mengganti mode peta
+            L.control.layers(baseMaps).addTo(map);
+
+
+
+
+
+            // Gaya untuk layer GeoJSON
+            const defaultStyle = {
+                color: "#f0f0f0",
+                weight: 1.5,
+                opacity: 0.8,
+                fillColor: "#45F450",
+                fillOpacity: 1,
+            };
+
+            const mesjidIcon = L.icon({
+                iconUrl: 'mesjid.png',
+                iconColor: "#350",
+                iconSize: [25, 25],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30],
+            });
+
+            // Ikon untuk sekolah
+            const sekolahIcon = L.icon({
+                iconUrl: 'sekolahku.png',
+                iconColor: "#000",
+                iconSize: [20, 20],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30],
+            });
+
+            // Memuat semua GeoJSON, agar langsung tampil tanpa harus diklik
+            loadGeoJSON("./sekolah.geojson", sekolahIcon);
+            loadGeoJSON("./Mesjid.geojson", mesjidIcon);
+
+            const geojsonFiles = [
+                {
+                    url: "./BentengUtara.geojson",
+                    style: { color: "#FF5733", weight: 1.5, opacity: 0.8, fillColor: "#C70039", fillOpacity: 0.5 }
+                },
+                {
+                    url: "./BentengPusat.geojson",
+                    style: { color: "#900C3F", weight: 1.5, opacity: 0.8, fillColor: "#581845", fillOpacity: 0.5 }
+                },
+                {
+                    url: "./BentengSelatan.geojson",
+                    style: { color: "#FFC300", weight: 1.5, opacity: 0.8, fillColor: "#DAF7A6", fillOpacity: 0.5 }
+                },
+                {
+                    url: "./jalanBenteng.geojson",
+                    style: { color: "#1C1C1C", weight: 4, opacity: 1 }
+                }
+            ];
+
+
+
+
+            geojsonFiles.forEach((file) => {
+                fetch(file.url)
+                    .then((response) => response.json())
+                    .then((geojsonData) => {
+                        L.geoJSON(geojsonData, {
+                            style: file.style,
+                            onEachFeature: function (feature, layer) {
+                                // Pastikan fitur memiliki obj properties 'nama'
+                                if (feature.properties && feature.properties.nama) {
+                                    layer.bindPopup(`${feature.properties.nama}`);
+                                } else {
+                                    console.warn('Fitur tidak memiliki properti "nama":', feature);
+                                }
+                            }
+                        }).addTo(map);
+                    })
+                    .catch((error) => console.error(`Error loading GeoJSON from ${file.url}:`, error));
+            });
+
+
+
+
+            const umkmData = {
+                name: "Teras Singgah",
+                rating: "4.9",
+                reviews: [
+
+                ],
+                category: "Kedai",
+                buka: "Setiap hari,10.00–22.00",
+                alamat: "Jl. Metro, Benteng Utara, Kec. Benteng, Kab. Kepulauan Selayar, Sulawesi Selatan 92812",
+                phone: "085796779948",
+                coords: [-6.1003759, 120.4648898],
+                imageUrl: "./logo1.jpg",
+
+            };
+
+            const marker = L.marker(umkmData.coords).addTo(map);
+
+            // Membuat konten HTML untuk popup
+            const reviewHTML = umkmData.reviews.map(review => `
+    <div class="review">
+        <h3>${review.name}</h3>
+        <span class="stars">${review.stars}</span>
+        <p class="review-date">${review.date}</p>
+        <p>${review.text}</p>
+    </div>
+`).join("");
+
+            // Menambahkan konten popup
+            marker.bindPopup(`
+    <div class="popup-container">
+        <div class="popup-header">${umkmData.name}</div>
+        <div class="popup-rating">⭐ ${umkmData.rating} <span>(${umkmData.reviews.length})</span></div>
+        <div class="popup-category">${umkmData.category}</div>
+        <img src="${umkmData.imageUrl}" alt="${umkmData.name}" class="popup-image" />
+        <div class="popup-address"><i class="fas fa-map-marker-alt"></i> ${umkmData.alamat}</div>
+        <div class="popup-hours"><i class="fas fa-clock"></i> <span>${umkmData.buka}</span></div>
+        <div class="popup-contact"><i class="fas fa-phone-alt"></i> ${umkmData.phone}</div>
+        <br>
+        <h1>Ulasan Pengguna</h1>
+        <div>${reviewHTML}</div>
+    </div>
+`);
+
+            // Fungsi untuk memuat GeoJSON
+            function loadGeoJSON(url, icon) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(geojsonData => {
+                        L.geoJSON(geojsonData, {
+                            onEachFeature: function (feature, layer) {
+                                if (feature.properties && feature.properties.nama) {
+                                    layer.bindPopup(`${feature.properties.nama}`);
+                                }
+                            },
+                            pointToLayer: function (feature, latlng) {
+                                return L.marker(latlng, { icon: icon });
+                            }
+                        }).addTo(map);
+                    })
+                    .catch(error => console.error(`Error loading ${url} GeoJSON:`, error));
+            }
+        });
+
+    </script>
+</body>
+
+</html>

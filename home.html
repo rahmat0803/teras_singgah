@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teras Singgah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #Home {
+            background-image: url(logo1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            padding: 112px;
+        }
+
+        #Home h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 20px;
+            padding-right: 65%;
+            color: white;
+        }
+
+        #Home h1 span {
+            color: red;
+            font-size: 5rem;
+        }
+
+        #Home p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            padding-right: 50%;
+            padding-bottom: 50px;
+            margin: 20px auto 0;
+            line-height: 1;
+            color: red;
+        }
+
+        #Home a {
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: left !important;
+            padding-right: 20%;
+            color: white;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            position: fixed;
+
+            top: 64px;
+
+            left: 0;
+            width: 100%;
+
+            z-index: 10;
+
+
+
+            display: none;
+
+
+        }
+
+        #mobile-menu a {
+
+
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #mobile-menu a:hover {
+            color: #ccc;
+        }
+
+        /* Saat menu aktif */
+        #mobile-menu.show {
+            display: flex;
+            /* Tampilkan menu */
+        }
+
+
+
+
+
+
+
+
+
+        @media (max-width: 768px) {
+
+
+
+            /* Hero Section */
+            #Home {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 50%;
+                text-align: center;
+            }
+
+            #Home h1 {
+                font-size: 2rem;
+                text-align: center;
+
+            }
+
+            #Home h1 span {
+                font-size: 2.5rem;
+            }
+
+            #Home p {
+                font-size: 1rem;
+                padding: 0;
+            }
+        }
+
+        /* Tablet (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            #Home h1 {
+                font-size: 2.5rem;
+            }
+
+            #Home h1 span {
+                font-size: 3.5rem;
+            }
+
+            #Home p {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Desktop (1024px ke atas) */
+        @media (min-width: 1024px) {
+            #Home h1 {
+                font-size: 3rem;
+            }
+
+            #Home h1 span {
+                font-size: 4.5rem;
+            }
+
+            #Home p {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="bg-blue-800 p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-white text-2xl font-bold">Teras Singgah</a>
+
+            <!-- Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="./home.html" class="text-white hover:text-red-500 transition">Beranda</a>
+                <a href="./menu.html" class="text-white hover:text-red-500 transition">Menu</a>
+                <a href="./map.html" class="text-white hover:text-red-500 transition">Map</a>
+                <a href="./kontak.html" class="text-white hover:text-red-500 transition">Kontak</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col bg-blue-800 p-4 space-y-4">
+            <a href="./home.html" class="text-white hover:text-red-500 transition">Beranda</a>
+            <a href="./menu.html" class="text-white hover:text-red-500 transition">Menu</a>
+            <a href="./map.html" class="text-white hover:text-red-500 transition">Map</a>
+            <a href="./kontak.html" class="text-white hover:text-red-500 transition">Kontak</a>
+        </div>
+    </nav>
+
+    <section id="Home">
+        <div class="container">
+            <h1 class="text-center mb-4">Selamat Datang Di <span>Teras singgah</span></h1>
+            <p>"Kalau singgah Lupa pulang"</p>
+        </div>
+    </section>
+
+    <footer class="bg-blue-800 text-white text-center py-3 shadow-md">
+        <p>&copy; 2024 Website terassinggah</p>
+    </footer>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('show'); // Toggle kelas 'show'
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teras Singgah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-BuT8j3/U4/GkypaP+qt6TmEdz2wLt0jtlduJhZeOj2n9WXBrz+rmKTxsVtEfmWmvPaH7WkBYYEyBca4G+C6xxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    body>div {
+        flex: 1;
+        /* Konten utama mengisi ruang yang tersisa */
+    }
+
+    footer {
+        margin-top: auto;
+        position: relative;
+    }
+</style>
+
+
+<body>
+    <!-- Navbar -->
+    <nav class="bg-blue-800 p-4 shadow-lg fixed top-0 left-0 w-full z-10">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-white text-2xl font-bold">Teras Singgah</a>
+
+            <!-- Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="./home.html" class="text-white hover:text-red-500 transition">Beranda</a>
+                <a href="./menu.html" class="text-white hover:text-red-500 transition">Menu</a>
+                <a href="./map.html" class="text-white hover:text-red-500 transition">Map</a>
+                <a href="./kontak.html" class="text-white hover:text-red-500 transition">Kontak</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col bg-blue-800 p-4 space-y-4">
+            <a href="./home.html" class="text-white hover:text-red-500 transition">Beranda</a>
+            <a href="./menu.html" class="text-white hover:text-red-500 transition">Menu</a>
+            <a href="./map.html" class="text-white hover:text-red-500 transition">Map</a>
+            <a href="./kontak.html" class="text-white hover:text-red-500 transition">Kontak</a>
+        </div>
+    </nav>
+
+    <script>
+        // Mobile menu toggle script
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Content Sections -->
+    <div class="pt-24 pb-16">
+        <!-- Makanan Section -->
+        <div class="text-center py-12">
+            <h2 class="text-4xl font-bold text-gray-700 mb-8">🍴 Makanan</h2>
+            <div class="flex justify-center gap-8 flex-wrap">
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="indomie goreng.jpg" alt="Indomie Goreng" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Indomie Goreng</h3>
+                    <p class="text-sm text-gray-300">10K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="indomie goreng double.jpg" alt="Indomie Goreng Double" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Indomie Goreng Double</h3>
+                    <p class="text-sm text-gray-300">15K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="mie ayam.jpeg" alt="Mie Ayam" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Mie Ayam</h3>
+                    <p class="text-sm text-gray-300">15K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="mie ayam telur ceplok.jpg" alt="Mie Ayam Telur Ceplok" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Mie Ayam Telur Ceplok</h3>
+                    <p class="text-sm text-gray-300">20K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="mie goreng.jpg" alt="Mie Goreng" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Mie Goreng</h3>
+                    <p class="text-sm text-gray-300">20K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="nasi ayam lalapan.jpg" alt="Nasi Ayam Lalapan" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Nasi Ayam Lalapan</h3>
+                    <p class="text-sm text-gray-300">25K</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cemilan Section -->
+        <div class="text-center py-12">
+            <h2 class="text-4xl font-bold text-gray-700 mb-8">🍪 Cemilan</h2>
+            <div class="flex justify-center gap-8 flex-wrap">
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="pisang goreng.jpg" alt="Pisang Goreng" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Pisang Goreng</h3>
+                    <p class="text-sm text-gray-300">10K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="ubi goreng.jpeg" alt="Ubi Goreng" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Ubi Goreng</h3>
+                    <p class="text-sm text-gray-300">10K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="sukun goreng.jpg" alt="Sukun Goreng" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Sukun Goreng</h3>
+                    <p class="text-sm text-gray-300">10K</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tambahan Section -->
+        <div class="text-center py-12">
+            <h2 class="text-4xl font-bold text-gray-700 mb-8">➕ Tambahan</h2>
+            <div class="flex justify-center gap-8 flex-wrap">
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="air gelas.jpeg" alt="Air Gelas" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Air Gelas</h3>
+                    <p class="text-sm text-gray-300">1K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="kacang.jpeg" alt="Kacang" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Kacang</h3>
+                    <p class="text-sm text-gray-300">2K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="ketupat.jpg" alt="Ketupat" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Ketupat</h3>
+                    <p class="text-sm text-gray-300">3K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="telur.jpg" alt="Telur" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Telur</h3>
+                    <p class="text-sm text-gray-300">3K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="air botol.jpeg" alt="Air Botol" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Air Botol</h3>
+                    <p class="text-sm text-gray-300">5K</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minuman Section -->
+        <div class="text-center py-12">
+            <h2 class="text-4xl font-bold text-gray-700 mb-8">☕ Minuman</h2>
+            <h3 class="text-2xl font-semibold text-gray-700 mb-6">Panas</h3>
+            <div class="flex justify-center gap-8 flex-wrap">
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="teh panas.jpg" alt="Teh Panas" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Teh Panas</h3>
+                    <p class="text-sm text-gray-300">5K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="kopi hitam.jpg" alt="Kopi Hitam" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Kopi Hitam</h3>
+                    <p class="text-sm text-gray-300">5K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="sarabba.jpg" alt="Sarabba" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Sarabba</h3>
+                    <p class="text-sm text-gray-300">5K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="teh susu.jpg" alt="Teh Susu" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Teh Susu</h3>
+                    <p class="text-sm text-gray-300">7K</p>
+                </div>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-700 mt-10 mb-6">Dingin</h3>
+            <div class="flex justify-center gap-8 flex-wrap">
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="es teh.jpg" alt="Es Teh" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Es Teh</h3>
+                    <p class="text-sm text-gray-300">5K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="es kopi.jpg" alt="Es Kopi" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Es Kopi</h3>
+                    <p class="text-sm text-gray-300">7K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="es lemon tea.jpeg" alt="Es Lemon Tea" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Es Lemon Tea</h3>
+                    <p class="text-sm text-gray-300">7K</p>
+                </div>
+                <div
+                    class="bg-gray-900 text-white p-6 rounded-xl shadow-xl hover:scale-105 transform transition duration-300 ease-in-out w-56">
+                    <img src="es teh susu.jpeg" alt="Es Teh Susu" class="w-full h-40 object-cover">
+                    <h3 class="text-lg font-semibold">Es Teh Susu</h3>
+                    <p class="text-sm text-gray-300">7K</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-blue-800 text-white text-center py-3 shadow-md">
+        <p>&copy; 2024 Website terassinggah</p>
+    </footer>
+</body>
+
+</html>
